@@ -1,0 +1,253 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Encryption129
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            Console.Title = "CipherX - Encryption/Decryption System";
+            Console.ForegroundColor = ConsoleColor.Green;
+
+
+            ShowMenu();
+        }
+
+        static void ShowMenu()
+        {
+            while (true)
+            {
+
+                Console.WriteLine("\nWelcome to Encryption and Decryption Application!");
+                Console.WriteLine("Menu:");
+                Console.WriteLine("1. Kama Sutra Encryption");
+                Console.WriteLine("2. Caesar Cipher");
+                Console.WriteLine("3. Monoalphabetic Cipher");
+                Console.WriteLine("4. Encryption");
+                Console.WriteLine("5. Transposition");
+                Console.WriteLine("6. Exit");
+                int choice = int.Parse(Console.ReadLine());
+
+
+                if (choice == 1)
+                {
+                    KamaSutra();
+                }
+                else if (choice == 2)
+                {
+                    CaesarCipher();
+                }
+                else if (choice == 5)
+                { transposition();
+                }
+                else if (choice == 6)
+                {
+                    Console.WriteLine("Thanks boss");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("try to input again");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+
+            }
+
+
+
+        }
+        static void TryAgain()
+        {
+            while (true)
+            {
+                Console.WriteLine("Would you like to try again? [Y/N]");
+                string input = Console.ReadLine();
+                if (input == "y")
+                {
+                    Console.Clear();
+                    ShowMenu();
+                }
+                else if (input == "n")
+                {
+                    Environment.Exit(0);
+
+                }
+                else
+                {
+                    Console.WriteLine("try to input again");
+                    Console.ReadKey();
+
+                }
+            }
+
+        }
+        static int EncryptionChoice()
+        {
+            while (true)
+            {
+                Console.WriteLine("What would you like to do?");
+                Console.WriteLine("Menu:");
+                Console.WriteLine("1. Encrypt");
+                Console.WriteLine("2. Decrypt");
+                Console.WriteLine("Enter choice: ");
+
+                int choice = int.Parse(Console.ReadLine());
+
+                return choice;
+
+
+            }
+
+        }
+        static void CaesarCipher()
+        {
+
+            int choice = EncryptionChoice();
+            if (choice == 1)
+            {
+                Caesar CaesarEncryption = new Caesar();
+                Console.Write("Enter text to encrypt: ");
+                string input = Console.ReadLine();
+
+                Console.Write("Enter key: ");
+                int key = int.Parse(Console.ReadLine());
+
+                string inputText = CaesarEncryption.CaesarAlgoEncryption(input, key);
+                Console.WriteLine("Encrypted Text: " + inputText);
+
+                TryAgain();
+            }
+            else if (choice == 2)
+            {
+                Caesar CaesarDecryption = new Caesar();
+                string inputText = CaesarDecryption.CaesarAlgoDecryption("text");
+                Console.WriteLine("input is: " + inputText);
+
+            }
+
+
+        }
+        static void KamaSutra()
+        {
+            EncryptionCodes Kamasutra = new EncryptionCodes();
+            Console.Write("Enter text: ");
+            string input = Console.ReadLine();
+
+
+            string kamaEncrypted = Kamasutra.KamaSutraEncryptDecrypt(input);
+            Console.WriteLine($"Kama Sutra Encrypted: {kamaEncrypted}");
+            Console.WriteLine($"Kama Sutra Decrypted: {Kamasutra.KamaSutraEncryptDecrypt(kamaEncrypted)}");
+
+            TryAgain();
+
+
+
+
+        }
+        public static string Encrypt(string text, int key)
+
+
+        {
+            if (string.IsNullOrEmpty(text) || key <= 0)
+                throw new ArgumentException("Invalid input. Text cannot be empty and key must be greater than zero.");
+
+            int numCols = key;
+            int numRows = (int)Math.Ceiling((double)text.Length / key);
+            char[,] grid = new char[numRows, numCols];
+
+            int index = 0;
+            for (int row = 0; row < numRows; row++)
+            {
+                for (int col = 0; col < numCols; col++)
+                {
+                    if (index < text.Length)
+                        grid[row, col] = text[index++];
+                    else
+                        grid[row, col] = ' ';
+                }
+            }
+
+            StringBuilder cipherText = new StringBuilder();
+            for (int col = 0; col < numCols; col++)
+            {
+                for (int row = 0; row < numRows; row++)
+                {
+                    cipherText.Append(grid[row, col]);
+                }
+            }
+
+            return cipherText.ToString().Replace(" ", "");
+        }
+
+        public static string Decrypt(string text, int key)
+        {
+            if (string.IsNullOrEmpty(text) || key <= 0)
+                throw new ArgumentException("Invalid input. Text cannot be empty and key must be greater than zero.");
+
+            int numRows = key;
+            int numCols = (int)Math.Ceiling((double)text.Length / key);
+            int numShadedBoxes = (numCols * numRows) - text.Length;
+            char[,] grid = new char[numRows, numCols];
+
+            int index = 0;
+            for (int col = 0; col < numCols; col++)
+            {
+                for (int row = 0; row < numRows; row++)
+                {
+                    if (col == numCols - 1 && row >= numRows - numShadedBoxes)
+                        continue;
+
+                    if (index < text.Length)
+                        grid[row, col] = text[index++];
+                }
+            }
+
+            StringBuilder plainText = new StringBuilder();
+            for (int row = 0; row < numRows; row++)
+            {
+                for (int col = 0; col < numCols; col++)
+                {
+                    if (grid[row, col] != '\0')
+                        plainText.Append(grid[row, col]);
+                }
+            }
+
+            return plainText.ToString();
+        }
+
+        static void transposition()
+        {
+            try
+            {
+                Console.Write("Enter message: ");
+                string message = Console.ReadLine();
+                Console.Write("Enter key (number of columns): ");
+                if (!int.TryParse(Console.ReadLine(), out int key) || key <= 0)
+                {
+                    Console.WriteLine("Invalid key. Please enter a positive integer.");
+                    return;
+                }
+
+                string encryptedText = Encrypt(message, key);
+                Console.WriteLine($"Encrypted: {encryptedText}");
+
+                string decryptedText = Decrypt(encryptedText, key);
+                Console.WriteLine($"Decrypted: {decryptedText}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+
+
+            }
+        }
+    }
+}
