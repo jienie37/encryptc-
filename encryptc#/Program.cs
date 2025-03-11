@@ -29,8 +29,10 @@ class Program
             }
             else if (choice == "2")
             {
+
                 CipherOptions.CaesarCipherOption();
                 TryAgain();
+
             }
             else if (choice == "3")
             {

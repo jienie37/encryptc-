@@ -9,23 +9,44 @@ namespace encryptc_
 
     public static class EncryptionDecryption
     {
+        private static Dictionary<char, char> encryptionMap = new Dictionary<char, char>
+    {
+        {'a', 'q'}, {'b', 'w'}, {'c', 'e'}, {'d', 'r'}, {'e', 't'},
+        {'f', 'y'}, {'g', 'u'}, {'h', 'i'}, {'i', 'o'}, {'j', 'p'},
+        {'k', 'a'}, {'l', 's'}, {'m', 'd'}, {'n', 'f'}, {'o', 'g'},
+        {'p', 'h'}, {'q', 'j'}, {'r', 'k'}, {'s', 'l'}, {'t', 'z'},
+        {'u', 'x'}, {'v', 'c'}, {'w', 'v'}, {'x', 'b'}, {'y', 'n'},
+        {'z', 'm'}
+    };
+
+        private static Dictionary<char, char> decryptionMap = new Dictionary<char, char>
+    {
+        {'q', 'a'}, {'w', 'b'}, {'e', 'c'}, {'r', 'd'}, {'t', 'e'},
+        {'y', 'f'}, {'u', 'g'}, {'i', 'h'}, {'o', 'i'}, {'p', 'j'},
+        {'a', 'k'}, {'s', 'l'}, {'d', 'm'}, {'f', 'n'}, {'g', 'o'},
+        {'h', 'p'}, {'j', 'q'}, {'k', 'r'}, {'l', 's'}, {'z', 't'},
+        {'x', 'u'}, {'c', 'v'}, {'v', 'w'}, {'b', 'x'}, {'n', 'y'},
+        {'m', 'z'}
+    };
+
         public static string MonoalphabeticEncrypt(string plaintext)
         {
             StringBuilder encryptedText = new StringBuilder();
+            plaintext = plaintext.ToLower(); 
+
             foreach (char c in plaintext)
             {
-                if (char.IsLetter(c))
+                if (c == ' ')
                 {
-                    char shifted = (char)(c + 3);
-                    if ((char.IsLower(c) && shifted > 'z') || (char.IsUpper(c) && shifted > 'Z'))
-                    {
-                        shifted = (char)(c - 23);
-                    }
-                    encryptedText.Append(shifted);
+                    continue; 
+                }
+                if (encryptionMap.ContainsKey(c))
+                {
+                    encryptedText.Append(encryptionMap[c]);
                 }
                 else
                 {
-                    encryptedText.Append(c);
+                    encryptedText.Append(c); 
                 }
             }
             return encryptedText.ToString();
@@ -34,16 +55,13 @@ namespace encryptc_
         public static string MonoalphabeticDecrypt(string ciphertext)
         {
             StringBuilder decryptedText = new StringBuilder();
+            ciphertext = ciphertext.ToLower(); 
+
             foreach (char c in ciphertext)
             {
-                if (char.IsLetter(c))
+                if (decryptionMap.ContainsKey(c))
                 {
-                    char shifted = (char)(c - 3);
-                    if ((char.IsLower(c) && shifted < 'a') || (char.IsUpper(c) && shifted < 'A'))
-                    {
-                        shifted = (char)(c + 23);
-                    }
-                    decryptedText.Append(shifted);
+                    decryptedText.Append(decryptionMap[c]);
                 }
                 else
                 {
@@ -84,5 +102,4 @@ namespace encryptc_
             return text;
         }
     }
-
 }
