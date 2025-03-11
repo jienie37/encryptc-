@@ -11,7 +11,7 @@ class Program
     {
         Console.WriteLine("1. Monoalphabetic Cipher");
         Console.WriteLine("2. Polyalphabetic Cipher (Vigenère)");
-        Console.WriteLine("3. Exittttttt");
+        Console.WriteLine("3. Exit");
     }
 
     static void Main(string[] args)
