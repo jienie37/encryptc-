@@ -32,5 +32,32 @@ namespace encryptc_
                 Console.WriteLine("Invalid action.");
             }
         }
+        public static void CaesarCipherOption()
+        {
+            Console.Write("Choose action (1. Encrypt, 2. Decrypt): ");
+            string action = Console.ReadLine();
+
+            if (action == "1")
+            {
+                Console.Write("Enter text to encrypt: ");
+                string plaintext = Console.ReadLine();
+
+                Console.Write("Enter key: ");
+                int key = int.Parse(Console.ReadLine());
+
+                string inputText = EncryptionDecryption.CaesarAlgoEncryption(plaintext, key);
+                Console.WriteLine("Encrypted Text: " + inputText);
+            }
+            else if (action == "2")
+            {
+               
+                string inputText = EncryptionDecryption.CaesarAlgoDecryption("text");
+                Console.WriteLine("input is: " + inputText);
+            }
+            else
+            {
+                Console.WriteLine("Invalid action.");
+            }
+        }
     }
 }

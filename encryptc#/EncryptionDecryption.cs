@@ -52,6 +52,37 @@ namespace encryptc_
             }
             return decryptedText.ToString();
         }
+        public static string CaesarAlgoEncryption(string text, int key)
+        {
+            text = text.ToUpper();
+            string result = "";
+
+            foreach (char c in text)
+            {
+                if (char.IsLetter(c)) // to check whether input is a letter, if space or other, disregard
+                {
+                    char shifted = (char)(c + key);
+
+                    if (shifted > 'Z')
+                    {
+                        shifted = (char)(shifted - 26);
+                    }
+                    result += shifted;
+                }
+                else
+                {
+                    result += c;
+                }
+            }
+
+            return result;
+        }
+        public static string CaesarAlgoDecryption(string text)
+        {
+
+            text = "DECRYPTION";
+            return text;
+        }
     }
 
 }

@@ -14,7 +14,7 @@ class Program
         Console.WriteLine("3. Exit");
     }
 
-    static void Main(string[] args)
+    static void Main()
     {
         while (true)
         {
@@ -25,10 +25,12 @@ class Program
             if (choice == "1")
             {
                 CipherOptions.MonoalphabeticOption();
+                TryAgain();
             }
             else if (choice == "2")
             {
-                CipherOptions.PolyalphabeticOption();
+                CipherOptions.CaesarCipherOption();
+                TryAgain();
             }
             else if (choice == "3")
             {
@@ -38,6 +40,32 @@ class Program
             else
             {
                 Console.WriteLine("Invalid choice. Please enter a number between 1 and 3.");
+            }
+        }
+    }
+    static void TryAgain()
+    {
+        while (true)
+        {
+            Console.WriteLine("Would you like to try again? [y/n]");
+            string input = Console.ReadLine();
+            if (input == "y")
+            {
+                Console.Clear();
+                Main();
+            }
+            else if (input == "n")
+            {
+                Console.WriteLine("Exiting...");
+                Console.ReadKey();
+                Environment.Exit(0);
+
+            }
+            else
+            {
+                Console.WriteLine("try to input again");
+                Console.ReadKey();
+
             }
         }
     }
