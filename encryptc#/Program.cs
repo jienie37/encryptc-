@@ -44,6 +44,11 @@ namespace encryptc_
                 }
                 else if (choice == "4")
                 {
+                    CipherOptions.PiSubstitutionCipherOption();
+                    TryAgain();
+                }
+                else if (choice == "5")
+                {
                     Console.WriteLine("Exiting the program. Goodbye!");
                     break;
                 }
@@ -57,7 +62,7 @@ namespace encryptc_
         {
             while (true)
             {
-                Console.WriteLine("Would you like to try again? [y/n]");
+                Console.WriteLine("Would you like to try again? [Y/N]");
                 string input = Console.ReadLine();
                 if (input == "y")
                 {
