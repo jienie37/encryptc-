@@ -11,10 +11,12 @@ namespace encryptc_
     {
         static void DisplayMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("1. Monoalphabetic Cipher");
             Console.WriteLine("2. Caesar Cipher");
-            Console.WriteLine("3. Pi Substitution Cipher");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("3. Transposition Cipher");
+            Console.WriteLine("4. Pi Substitution Cipher");
+            Console.WriteLine("5. Exit");
         }
 
         static void Main()
@@ -22,7 +24,7 @@ namespace encryptc_
             while (true)
             {
                 DisplayMenu();
-                Console.Write("Enter your choice (1-3): ");
+                Console.Write("Enter your choice (1-5): ");
                 string choice = Console.ReadLine();
 
                 if (choice == "1")
@@ -39,7 +41,7 @@ namespace encryptc_
                 }
                 else if (choice == "3")
                 {
-                    CipherOptions.PiSubstitutionCipherOption();
+                    CipherOptions.TranspositionOption();
                     TryAgain();
                 }
                 else if (choice == "4")
@@ -54,33 +56,41 @@ namespace encryptc_
                 }
                 else
                 {
-                    Console.WriteLine("Invalid choice. Please enter a number between 1 and 3.");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
+                    Console.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
+                    Console.Clear();
                 }
             }
         }
         static void TryAgain()
         {
+            Console.WriteLine("||===================================================================================||");
+            Console.Write("Would you like to try again? [Y]es, [N]o, or [C]lear the console and try again: ");
             while (true)
             {
-                Console.WriteLine("Would you like to try again? [Y/N]");
-                string input = Console.ReadLine();
-                if (input == "y")
+                string input = Console.ReadLine().ToUpper();
+                if (input == "Y")
+                {
+                    Console.WriteLine("||===================================================================================||");
+                    Console.WriteLine("");
+                    Main();
+                }
+                else if (input == "C")
                 {
                     Console.Clear();
                     Main();
                 }
-                else if (input == "n")
+                else if (input == "N")
                 {
                     Console.WriteLine("Exiting...");
                     Console.ReadKey();
                     Environment.Exit(0);
-
                 }
                 else
                 {
-                    Console.WriteLine("try to input again");
-                    Console.ReadKey();
-
+                    Console.Write("Invalid action. Pick between Y, N, or C: ");
                 }
             }
         }

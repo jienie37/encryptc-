@@ -8,7 +8,7 @@ namespace encryptc_
 {
     public static class Encryption_Decryption
     {
-        /* ================== Monoalphabetic Encryption and Decryption ================== */
+        /*====================================== Monoalphabetic Algorithm ======================================*/
         public static string Monoalphabetic_Encrypt(string plaintext)
         {
             var encryptionMap = new Dictionary<char, char>
@@ -39,7 +39,7 @@ namespace encryptc_
                     ciphertext.Append(c);
                 }
             }
-            return ciphertext.ToString();
+            return ciphertext.ToString().ToUpper();
         }
 
         public static string MonoalphabeticDecrypt(string ciphertext)
@@ -68,11 +68,11 @@ namespace encryptc_
                     plaintext.Append(c);
                 }
             }
-            return plaintext.ToString();
+            return plaintext.ToString().ToUpper();
         }
 
 
-        /* ================== Caesar Cipher Encryption and Decryption ================== */
+        /*====================================== Caesar Cipher Algorithm ======================================*/
         public static string CaesarAlgoEncryption(string text, int key)
         {
             text = text.ToUpper();
@@ -130,96 +130,88 @@ namespace encryptc_
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* ================== Pi Substitution Cipher Encryption and Decryption ================== */
+        /*====================================== Transposition Cipher Algorithm ======================================*/
+        public static string TranspositionEncryption(string plaintext, string key)
+        {
+            key = key.Replace(" ", "");
+
+            int[] keyOrder = GetKeyOrder(key);
+            int columns = key.Length;
+            int rows = (int)Math.Ceiling((double)plaintext.Length / columns);
+            char[,] grid = new char[rows, columns];
+
+            int index = 0;
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < columns; c++)
+                {
+                    grid[r, c] = index < plaintext.Length ? plaintext[index++] : 'X';
+                }
+            }
+
+            string result = "";
+            for (int i = 0; i < columns; i++)
+            {
+                int col = keyOrder[i];
+                for (int r = 0; r < rows; r++)
+                {
+                    result += grid[r, col];
+                }
+            }
+            return result;
+        }
+
+        public static string TranspositionDecryption(string ciphertext, string key)
+        {
+            int[] keyOrder = GetKeyOrder(key);
+            int columns = key.Length;
+            int rows = (int)Math.Ceiling((double)ciphertext.Length / columns);
+            char[,] grid = new char[rows, columns];
+
+            int index = 0;
+            for (int i = 0; i < columns; i++)
+            {
+                int col = keyOrder[i];
+                for (int r = 0; r < rows; r++)
+                {
+                    if (index < ciphertext.Length)
+                        grid[r, col] = ciphertext[index++];
+                }
+            }
+
+            string result = "";
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < columns; c++)
+                {
+                    result += grid[r, c];
+                }
+            }
+            return result.TrimEnd('X');
+        }
+
+        public static int[] GetKeyOrder(string key)
+        {
+            char[] sortedKey = key.OrderBy(c => c).ToArray();
+            int[] order = new int[key.Length];
+            bool[] assigned = new bool[key.Length];
+
+            for (int i = 0; i < key.Length; i++)
+            {
+                for (int j = 0; j < key.Length; j++)
+                {
+                    if (!assigned[j] && key[j] == sortedKey[i])
+                    {
+                        order[i] = j;
+                        assigned[j] = true;
+                        break;
+                    }
+                }
+            }
+            return order;
+        }
+
+        /*====================================== Pi Substitution Cipher Algorithm ======================================*/
         private static readonly string pi_decimal = "141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118";
 
         public static string PiSubstitutionEncrypt(string plaintext)
