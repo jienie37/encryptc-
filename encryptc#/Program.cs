@@ -19,7 +19,7 @@ namespace encryptc_
             Console.WriteLine("5. Exit");
         }
 
-        static void Main()
+        public static void Main()
         {
             while (true)
             {

@@ -42,7 +42,7 @@ namespace encryptc_
             return ciphertext.ToString().ToUpper();
         }
 
-        public static string MonoalphabeticDecrypt(string ciphertext)
+        public static string Monoalphabetic_Decrypt(string ciphertext)
         {
             var decryptionMap = new Dictionary<char, char>
                 {
@@ -73,7 +73,7 @@ namespace encryptc_
 
 
         /*====================================== Caesar Cipher Algorithm ======================================*/
-        public static string CaesarAlgoEncryption(string text, int key)
+        public static string CaesarAlgo_Encryption(string text, int key)
         {
             text = text.ToUpper();
             string result = "";
@@ -103,7 +103,7 @@ namespace encryptc_
             return result;
         }
 
-        public static string CaesarAlgoDecryption(string ciphertext, int key)
+        public static string CaesarAlgo_Decryption(string ciphertext, int key)
         {
             ciphertext = ciphertext.ToUpper();
             string result = "";
@@ -131,11 +131,11 @@ namespace encryptc_
 
 
         /*====================================== Transposition Cipher Algorithm ======================================*/
-        public static string TranspositionEncryption(string plaintext, string key)
+        public static string Transposition_Encryption(string plaintext, string key)
         {
             key = key.Replace(" ", "");
 
-            int[] keyOrder = GetKeyOrder(key);
+            int[] keyOrder = Get_Key_Order(key);
             int columns = key.Length;
             int rows = (int)Math.Ceiling((double)plaintext.Length / columns);
             char[,] grid = new char[rows, columns];
@@ -161,9 +161,9 @@ namespace encryptc_
             return result;
         }
 
-        public static string TranspositionDecryption(string ciphertext, string key)
+        public static string Transposition_Decryption(string ciphertext, string key)
         {
-            int[] keyOrder = GetKeyOrder(key);
+            int[] keyOrder = Get_Key_Order(key);
             int columns = key.Length;
             int rows = (int)Math.Ceiling((double)ciphertext.Length / columns);
             char[,] grid = new char[rows, columns];
@@ -190,7 +190,7 @@ namespace encryptc_
             return result.TrimEnd('X');
         }
 
-        public static int[] GetKeyOrder(string key)
+        public static int[] Get_Key_Order(string key)
         {
             char[] sortedKey = key.OrderBy(c => c).ToArray();
             int[] order = new int[key.Length];
@@ -214,7 +214,7 @@ namespace encryptc_
         /*====================================== Pi Substitution Cipher Algorithm ======================================*/
         private static readonly string pi_decimal = "141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118";
 
-        public static string PiSubstitutionEncrypt(string plaintext)
+        public static string Pi_Substitution_Encrypt(string plaintext)
         {
             plaintext = plaintext.ToUpper(); 
             string ciphertext = "";
@@ -285,7 +285,7 @@ namespace encryptc_
 
 
 
-        public static string PiSubstitutionDecrypt(string ciphertext)
+        public static string Pi_Substitution_Decrypt(string ciphertext)
         {
             string plaintext = "";
             int i = 0;

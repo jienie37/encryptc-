@@ -35,6 +35,7 @@ namespace encryptc_
         /*==================================================================================================================*/
         public static void MonoalphabeticOption()
         {
+            CipherInfo.DisplayMonoalphabeticInfo();
             string action = GetAction();
             Console.WriteLine("||===================================================================================||");
             if (action == "1")
@@ -54,7 +55,7 @@ namespace encryptc_
                 Console.Write("Enter text to decrypt: ");
                 string ciphertext = Console.ReadLine();
                 Console.ResetColor();
-                string plaintext = Encryption_Decryption.MonoalphabeticDecrypt(ciphertext);
+                string plaintext = Encryption_Decryption.Monoalphabetic_Decrypt(ciphertext);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Decrypted text: {plaintext}");
                 Console.ResetColor();
@@ -64,6 +65,7 @@ namespace encryptc_
         /*==================================================================================================================*/
         public static void CaesarCipherOption()
         {
+            CipherInfo.DisplayCaesarInfo();
             string action = GetAction();
 
             if (action == "1")
@@ -86,7 +88,7 @@ namespace encryptc_
                 }
                 Console.ResetColor();
 
-                string input_text = Encryption_Decryption.CaesarAlgoEncryption(plaintext, key);
+                string input_text = Encryption_Decryption.CaesarAlgo_Encryption(plaintext, key);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Encrypted Text: " + input_text);
                 Console.ResetColor();
@@ -111,7 +113,7 @@ namespace encryptc_
                 }
                 Console.ResetColor();
 
-                string input_text = Encryption_Decryption.CaesarAlgoDecryption(ciphertext, key);
+                string input_text = Encryption_Decryption.CaesarAlgo_Decryption(ciphertext, key);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Encrypted Text: " + input_text);
                 Console.ResetColor();
@@ -121,6 +123,7 @@ namespace encryptc_
         /*==================================================================================================================*/
         public static void TranspositionOption()
         {
+            CipherInfo.DisplayTranspositionInfo();
             string action = GetAction();
 
             if (action == "1")
@@ -135,7 +138,7 @@ namespace encryptc_
                 string key = Console.ReadLine();
                 Console.ResetColor();
 
-                string input_text = Encryption_Decryption.TranspositionEncryption(plaintext, key);
+                string input_text = Encryption_Decryption.Transposition_Encryption(plaintext, key);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Encrypted Text: " + input_text);
                 Console.ResetColor();
@@ -152,7 +155,7 @@ namespace encryptc_
                 string key = Console.ReadLine();
                 Console.ResetColor();
 
-                string input_text = Encryption_Decryption.TranspositionDecryption(ciphertext, key);
+                string input_text = Encryption_Decryption.Transposition_Decryption(ciphertext, key);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Decrypted Text: " + input_text);
                 Console.ResetColor();
@@ -162,6 +165,7 @@ namespace encryptc_
         /*==================================================================================================================*/
         public static void PiSubstitutionCipherOption()
         {
+            CipherInfo.DisplayPiSubstitutionInfo();
             string action = GetAction();
 
             if (action == "1")
@@ -186,7 +190,7 @@ namespace encryptc_
                     }
                 }
 
-                string ciphertext = Encryption_Decryption.PiSubstitutionEncrypt(plaintext);
+                string ciphertext = Encryption_Decryption.Pi_Substitution_Encrypt(plaintext);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Encrypted text: {ciphertext}");
                 Console.ResetColor();
@@ -213,7 +217,7 @@ namespace encryptc_
                     }
                 }
 
-                string plaintext = Encryption_Decryption.PiSubstitutionDecrypt(ciphertext);
+                string plaintext = Encryption_Decryption.Pi_Substitution_Decrypt(ciphertext);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Decrypted text: {plaintext}");
                 Console.ResetColor();
