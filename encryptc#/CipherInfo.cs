@@ -35,8 +35,8 @@ namespace encryptc_
                 "Monoalphabetic Cipher",
                 "A monoalphabetic cipher is a substitution cipher where each letter in the plaintext is replaced\nby a letter with a fixed relationship to it.",
                 "A -> Q, B -> W, C -> E, etc.",
-                "- Simple to implement and understand.\n- Provides a basic level of security.",
-                "- Vulnerable to frequency analysis attacks.\n- Once the substitution pattern is known, the cipher can be easily broken."
+                "- Easy to implement and understand.\n- Provides a basic level of security.",
+                "- Can be cracked by looking at letter patterns.\n- Once the substitution pattern is known, the cipher can be easily broken."
             );
         }
 
@@ -66,10 +66,10 @@ namespace encryptc_
         {
             Info(
                 "Pi Substitution Cipher",
-                "The Pi substitution cipher uses the digits of Pi to create a substitution cipher, where each letter\n is replaced by its position in the Pi decimal sequence and the number of digits it holds.",
+                "The Pi substitution cipher uses the digits of Pi to create a substitution cipher, where each letter\n is replaced by its position in the Pi decimal sequence.",
                 "A -> 0011 (001 = the position it first appeared, 1 = digits needed to be extracted)\n B -> 0061\n C -> 0091 ",
-                "- Uses a non-repeating sequence (digits of Pi) for substitution.\n- Provides a higher level of security compared to simple substitution ciphers.",
-                "- More complex to implement and understand.\n- Requires knowledge of the digits of Pi for encryption and decryption."
+                "- Uses Pi’s digits, making it harder to guess.\n- More secure than simple ciphers.",
+                "- Harder to implement and understand.\n- You need Pi’s digits to encode and decode messages."
             );
         }
     }
