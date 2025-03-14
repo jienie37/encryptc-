@@ -67,7 +67,7 @@ namespace encryptc_
             DisplayInfo(
                 "Pi Substitution Cipher",
                 "The Pi substitution cipher uses the digits of Pi to create a substitution cipher, where each letter\n is replaced by its position in the Pi decimal sequence and the number of digits it holds.",
-                "A -> 0011 (001 = the position it first appeared, 1 = digits needed to be extracted)\n B -> 0061\n C -> 0091 "
+                "A -> 0011 (001 = the position it first appeared, 1 = digits needed to be extracted)\n B -> 0061\n C -> 0091 ",
                 "- Uses a non-repeating sequence (digits of Pi) for substitution.\n- Provides a higher level of security compared to simple substitution ciphers.",
                 "- More complex to implement and understand.\n- Requires knowledge of the digits of Pi for encryption and decryption."
             );

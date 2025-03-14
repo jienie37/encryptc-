@@ -34,10 +34,8 @@ namespace encryptc_
                 }
                 else if (choice == "2")
                 {
-
                     CipherOptions.CaesarCipherOption();
                     TryAgain();
-
                 }
                 else if (choice == "3")
                 {
@@ -58,9 +56,9 @@ namespace encryptc_
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
+                    Console.ResetColor();
                     Console.WriteLine("Press Enter to continue...");
                     Console.ReadLine();
-                    Console.Clear();
                 }
             }
         }

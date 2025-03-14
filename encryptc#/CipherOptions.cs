@@ -76,15 +76,15 @@ namespace encryptc_
                 Console.ResetColor();
 
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter key (Integer): ");
+                Console.Write("Enter key (1-26): ");
                 int key;
-                while (!int.TryParse(Console.ReadLine(), out key))
+                while (!int.TryParse(Console.ReadLine(), out key) || key < 1 || key > 26)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid input. Please enter a valid integer.");
                     Console.ResetColor();
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("Enter key: ");
+                    Console.Write("Enter key (1-26): ");
                 }
                 Console.ResetColor();
 
@@ -101,15 +101,15 @@ namespace encryptc_
                 Console.ResetColor();
 
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter key (Integer): ");
+                Console.Write("Enter key (1-26): ");
                 int key;
-                while (!int.TryParse(Console.ReadLine(), out key))
+                while (!int.TryParse(Console.ReadLine(), out key) || key >= 1 || key <= 26)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid input. Please enter a valid integer.");
                     Console.ResetColor();
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("Enter key: (Integer) ");
+                    Console.Write("Enter key: (1-26) ");
                 }
                 Console.ResetColor();
 
