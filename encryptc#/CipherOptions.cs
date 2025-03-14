@@ -41,7 +41,7 @@ namespace encryptc_
                 Console.Write(prompt);
                 input = Console.ReadLine();
                 Console.ResetColor();
-                if (!string.IsNullOrWhiteSpace(input))
+                if (!string.IsNullOrEmpty(input))
                 {
                     break;
                 }
@@ -64,7 +64,7 @@ namespace encryptc_
                 Console.Write(prompt);
                 input = Console.ReadLine();
                 Console.ResetColor();
-                if (!string.IsNullOrWhiteSpace(input) && input.All(char.IsLetter))
+                if (!string.IsNullOrEmpty(input) && input.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
                 {
                     break;
                 }
