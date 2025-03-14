@@ -9,7 +9,7 @@ namespace encryptc_
 {
     class Program
     {
-        static void DisplayMenu()
+        static void Menu()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("1. Monoalphabetic Cipher");
@@ -23,7 +23,7 @@ namespace encryptc_
         {
             while (true)
             {
-                DisplayMenu();
+                Menu();
                 Console.Write("Enter your choice (1-5): ");
                 string choice = Console.ReadLine();
 
