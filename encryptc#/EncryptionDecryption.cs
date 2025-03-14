@@ -110,13 +110,17 @@ namespace encryptc_
 
             foreach (char c in ciphertext)
             {
+                if (c == ' ')
+                {
+                    continue;
+                }
                 if (char.IsLetter(c)) // to check whether input is a letter, if space or other, disregard
                 {
                     char shifted = (char)(c - key);
 
                     if (shifted < 'A')
                     {
-                        shifted = (char)(shifted + 26);
+                        shifted = (char)(shifted - 26);
                     }
                     result += shifted;
                 }
@@ -145,7 +149,14 @@ namespace encryptc_
             {
                 for (int c = 0; c < columns; c++)
                 {
-                    grid[r, c] = index < plaintext.Length ? plaintext[index++] : 'X';
+                    if (index < plaintext.Length)
+                    {
+                        grid[r, c] = plaintext[index++];
+                    }
+                    else
+                    {
+                        grid[r, c] = '\0';
+                    }
                 }
             }
 
@@ -155,7 +166,10 @@ namespace encryptc_
                 int col = keyOrder[i];
                 for (int r = 0; r < rows; r++)
                 {
-                    result += grid[r, col];
+                    if (grid[r, col] != '\0')
+                    {
+                        result += grid[r, col];
+                    }
                 }
             }
             return result;
@@ -223,7 +237,6 @@ namespace encryptc_
             {
                 if (char.IsWhiteSpace(c))
                 {
-                    // ignores spaces
                     continue;
                 }
 

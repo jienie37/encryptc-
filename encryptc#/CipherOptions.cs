@@ -8,7 +8,7 @@ namespace encryptc_
 {
     public static class CipherOptions
     {
-        private static string GetAction()
+        private static string Option()
         {
             string action;
             while (true)
@@ -32,18 +32,38 @@ namespace encryptc_
             return action;
         }
 
+        private static string ValidateInput(string prompt)
+        {
+            string input;
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(prompt);
+                input = Console.ReadLine();
+                Console.ResetColor();
+                if (!string.IsNullOrWhiteSpace(input))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Input cannot be empty.");
+                    Console.ResetColor();
+                }
+            }
+            return input;
+        }
+
         /*==================================================================================================================*/
         public static void MonoalphabeticOption()
         {
-            CipherInfo.DisplayMonoalphabeticInfo();
-            string action = GetAction();
+            CipherInfo.Monoalphabetic_Info();
+            string action = Option();
             Console.WriteLine("||===================================================================================||");
             if (action == "1")
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter text to encrypt: ");
-                string plaintext = Console.ReadLine();
-                Console.ResetColor();
+                string plaintext = ValidateInput("Enter text to encrypt: ");
                 string ciphertext = Encryption_Decryption.Monoalphabetic_Encrypt(plaintext);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Encrypted text: {ciphertext}");
@@ -51,10 +71,7 @@ namespace encryptc_
             }
             else if (action == "2")
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter text to decrypt: ");
-                string ciphertext = Console.ReadLine();
-                Console.ResetColor();
+                string ciphertext = ValidateInput("Enter text to decrypt: ");
                 string plaintext = Encryption_Decryption.Monoalphabetic_Decrypt(ciphertext);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Decrypted text: {plaintext}");
@@ -65,28 +82,27 @@ namespace encryptc_
         /*==================================================================================================================*/
         public static void CaesarCipherOption()
         {
-            CipherInfo.DisplayCaesarInfo();
-            string action = GetAction();
+            CipherInfo.Caesar_Info();
+            string action = Option();
 
             if (action == "1")
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter text to encrypt: ");
-                string plaintext = Console.ReadLine();
-                Console.ResetColor();
-
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter key (1-26): ");
+                string plaintext = ValidateInput("Enter text to encrypt: ");
                 int key;
-                while (!int.TryParse(Console.ReadLine(), out key) || key < 1 || key > 26)
+                while (true)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid input. Please enter a valid integer.");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("Enter key (1-26): ");
+                    string keyInput = ValidateInput("Enter key (1-26): ");
+                    if (int.TryParse(keyInput, out key) && key >= 1 && key <= 26)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid input. Please enter a valid integer between 1 and 26.");
+                        Console.ResetColor();
+                    }
                 }
-                Console.ResetColor();
 
                 string input_text = Encryption_Decryption.CaesarAlgo_Encryption(plaintext, key);
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -95,27 +111,26 @@ namespace encryptc_
             }
             else if (action == "2")
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter text to decrypt: ");
-                string ciphertext = Console.ReadLine();
-                Console.ResetColor();
-
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter key (1-26): ");
+                string ciphertext = ValidateInput("Enter text to decrypt: ");
                 int key;
-                while (!int.TryParse(Console.ReadLine(), out key) || key >= 1 || key <= 26)
+                while (true)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid input. Please enter a valid integer.");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("Enter key: (1-26) ");
+                    string keyInput = ValidateInput("Enter key (1-26): ");
+                    if (int.TryParse(keyInput, out key) && key >= 1 && key <= 26)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid input. Please enter a valid integer between 1 and 26.");
+                        Console.ResetColor();
+                    }
                 }
-                Console.ResetColor();
 
                 string input_text = Encryption_Decryption.CaesarAlgo_Decryption(ciphertext, key);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Encrypted Text: " + input_text);
+                Console.WriteLine("Decrypted Text: " + input_text);
                 Console.ResetColor();
             }
         }
@@ -123,21 +138,13 @@ namespace encryptc_
         /*==================================================================================================================*/
         public static void TranspositionOption()
         {
-            CipherInfo.DisplayTranspositionInfo();
-            string action = GetAction();
+            CipherInfo.Transposition_Info();
+            string action = Option();
 
             if (action == "1")
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter text to encrypt: ");
-                string plaintext = Console.ReadLine();
-                Console.ResetColor();
-
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter key (String): ");
-                string key = Console.ReadLine();
-                Console.ResetColor();
-
+                string plaintext = ValidateInput("Enter text to encrypt: ");
+                string key = ValidateInput("Enter key (String): ");
                 string input_text = Encryption_Decryption.Transposition_Encryption(plaintext, key);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Encrypted Text: " + input_text);
@@ -145,16 +152,8 @@ namespace encryptc_
             }
             else if (action == "2")
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter text to decrypt: ");
-                string ciphertext = Console.ReadLine();
-                Console.ResetColor();
-
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Enter key (String): ");
-                string key = Console.ReadLine();
-                Console.ResetColor();
-
+                string ciphertext = ValidateInput("Enter text to decrypt: ");
+                string key = ValidateInput("Enter key (String): ");
                 string input_text = Encryption_Decryption.Transposition_Decryption(ciphertext, key);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Decrypted Text: " + input_text);
@@ -165,19 +164,15 @@ namespace encryptc_
         /*==================================================================================================================*/
         public static void PiSubstitutionCipherOption()
         {
-            CipherInfo.DisplayPiSubstitutionInfo();
-            string action = GetAction();
+            CipherInfo.PiSubstitution_Info();
+            string action = Option();
 
             if (action == "1")
             {
                 string plaintext;
                 while (true)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("Enter text to encrypt (letters and spaces only): ");
-                    plaintext = Console.ReadLine();
-                    Console.ResetColor();
-
+                    plaintext = ValidateInput("Enter text to encrypt (letters and spaces only): ");
                     if (plaintext.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
                     {
                         break;
@@ -200,11 +195,7 @@ namespace encryptc_
                 string ciphertext;
                 while (true)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("Enter text to decrypt (numbers only, length divisible by 4): ");
-                    ciphertext = Console.ReadLine();
-                    Console.ResetColor();
-
+                    ciphertext = ValidateInput("Enter text to decrypt (numbers only, length divisible by 4): ");
                     if (ciphertext.All(char.IsDigit) && ciphertext.Length % 4 == 0)
                     {
                         break;

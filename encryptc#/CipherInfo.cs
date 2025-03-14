@@ -9,7 +9,7 @@ namespace encryptc_
 {
     public static class CipherInfo
     {
-        private static void DisplayInfo(string title, string description, string example, string pros, string cons)
+        private static void Info(string title, string description, string example, string pros, string cons)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("||===================================================================================||");
@@ -29,9 +29,9 @@ namespace encryptc_
             Console.WriteLine();
         }
 
-        public static void DisplayMonoalphabeticInfo()
+        public static void Monoalphabetic_Info()
         {
-            DisplayInfo(
+            Info(
                 "Monoalphabetic Cipher",
                 "A monoalphabetic cipher is a substitution cipher where each letter in the plaintext is replaced\nby a letter with a fixed relationship to it.",
                 "A -> Q, B -> W, C -> E, etc.",
@@ -40,9 +40,9 @@ namespace encryptc_
             );
         }
 
-        public static void DisplayCaesarInfo()
+        public static void Caesar_Info()
         {
-            DisplayInfo(
+            Info(
                 "Caesar Cipher",
                 "The Caesar cipher is a substitution cipher where each letter in the plaintext is shifted a certain\nnumber of places down the alphabet.",
                 "With a shift of 3, A -> D, B -> E, C -> F, etc.",
@@ -51,9 +51,9 @@ namespace encryptc_
             );
         }
 
-        public static void DisplayTranspositionInfo()
+        public static void Transposition_Info()
         {
-            DisplayInfo(
+            Info(
                 "Transposition Cipher",
                 "A transposition cipher is a method of encryption where the positions of the characters\nin the plaintext are shifted according to a regular system.",
                 "Using a key, the characters are rearranged in a grid and read column by column.",
@@ -62,9 +62,9 @@ namespace encryptc_
             );
         }
 
-        public static void DisplayPiSubstitutionInfo()
+        public static void PiSubstitution_Info()
         {
-            DisplayInfo(
+            Info(
                 "Pi Substitution Cipher",
                 "The Pi substitution cipher uses the digits of Pi to create a substitution cipher, where each letter\n is replaced by its position in the Pi decimal sequence and the number of digits it holds.",
                 "A -> 0011 (001 = the position it first appeared, 1 = digits needed to be extracted)\n B -> 0061\n C -> 0091 ",
