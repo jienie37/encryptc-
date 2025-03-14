@@ -235,43 +235,38 @@ namespace encryptc_
                     // find the index of the letter in the pi_decimal string
                     int index = pi_decimal.IndexOf(letter_number.ToString());
 
-                    if (index != -1) // checks the letter if its on the pi_decimal string
+                    
+                    // add the index to the ciphertext
+                    string index_string = (index + 1).ToString();
+
+                    // digit count per letter
+                    int digit_count;
+                    if (letter_number >= 1 && letter_number <= 9) 
                     {
-                        // add the index to the ciphertext
-                        string indexStr = (index + 1).ToString();
+                        digit_count = 1;
+                    }
+                    else 
+                    {
+                        digit_count = 2;
+                    }
 
-                        // digit count per letter
-                        int digit_count;
-                        if (letter_number >= 1 && letter_number <= 9) 
-                        {
-                            digit_count = 1;
-                        }
-                        else 
-                        {
-                            digit_count = 2;
-                        }
-
-                        // add 0s to the index if it's less than 3 digits
-                        if (indexStr.Length == 1)
-                        {
-                            ciphertext += "00" + indexStr; 
-                        }
-                        else if (indexStr.Length == 2)
-                        {
-                            ciphertext += "0" + indexStr; 
-                        }
-                        else
-                        {
-                            ciphertext += indexStr; 
-                        }
-
-                        
-                        ciphertext += digit_count.ToString();
+                    // add 0s to the index if it's less than 3 digits
+                    if (index_string.Length == 1)
+                    {
+                        ciphertext += "00" + index_string; 
+                    }
+                    else if (index_string.Length == 2)
+                    {
+                        ciphertext += "0" + index_string; 
                     }
                     else
                     {
-                        ciphertext += "0000";
+                        ciphertext += index_string; 
                     }
+
+                        
+                    ciphertext += digit_count.ToString();
+                    
                 }
                 else
                 {
