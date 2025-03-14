@@ -313,29 +313,22 @@ namespace encryptc_
                 int digit_count = int.Parse(group.Substring(3, 1));// digit count
 
                 if (int.TryParse(index_string, out int index))
-                {
-                    // check if the index is within the valid range
-                    if (index > 0)
-                    {
-                        // get number from pi_decimal string, digit_count is the numeber of digits to get
-                        string pi_string = pi_decimal.Substring(index - 1, digit_count);
+                {                    
+                    // get number from pi_decimal string, digit_count is the numeber of digits to get
+                    string pi_string = pi_decimal.Substring(index - 1, digit_count);
 
-                        // turn the number back to a letter
-                        if (int.TryParse(pi_string, out int letter_number) && letter_number >= 1 && letter_number <= 26)
-                        {
-                            char decrypted_char = (char)('A' + letter_number - 1);
-                            plaintext += decrypted_char;
-                        }
-                        else
-                        {
-                            // If it's not in the valid range, append a placeholder (e.g., '?')
-                            plaintext += "?";
-                        }
+                    // turn the number back to a letter
+                    if (int.TryParse(pi_string, out int letter_number) && letter_number >= 1 && letter_number <= 26)
+                    {
+                        char decrypted_char = (char)('A' + letter_number - 1);
+                        plaintext += decrypted_char;
                     }
                     else
                     {
+                        // If it's not in the valid range, append a placeholder (e.g., '?')
                         plaintext += "?";
                     }
+                    
                 }
                 else
                 {
