@@ -11,6 +11,10 @@ namespace encryptc_
         /*====================================== Monoalphabetic Algorithm ======================================*/
         public static string Monoalphabetic_Encrypt(string plaintext)
         {
+            if (string.IsNullOrWhiteSpace(plaintext) || !plaintext.All(char.IsLetter))
+            {
+                return "Invalid input. Please enter letters only.";
+            }
             var encryptionMap = new Dictionary<char, char>
                 {
                     {'a', 'q'}, {'b', 'w'}, {'c', 'e'}, {'d', 'r'}, {'e', 't'},

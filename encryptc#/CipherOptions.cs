@@ -55,6 +55,28 @@ namespace encryptc_
             return input;
         }
 
+        private static string ValidateInputLetters(string prompt)
+        {
+            string input;
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(prompt);
+                input = Console.ReadLine();
+                Console.ResetColor();
+                if (!string.IsNullOrWhiteSpace(input) && input.All(char.IsLetter))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid input. Please enter letters only.");
+                    Console.ResetColor();
+                }
+            }
+            return input;
+        }
         /*==================================================================================================================*/
         public static void MonoalphabeticOption()
         {
@@ -63,7 +85,7 @@ namespace encryptc_
             Console.WriteLine("||===================================================================================||");
             if (action == "1")
             {
-                string plaintext = ValidateInput("Enter text to encrypt: ");
+                string plaintext = ValidateInputLetters("Enter text to encrypt: ");
                 string ciphertext = Encryption_Decryption.Monoalphabetic_Encrypt(plaintext);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Encrypted text: {ciphertext}");
@@ -71,7 +93,7 @@ namespace encryptc_
             }
             else if (action == "2")
             {
-                string ciphertext = ValidateInput("Enter text to decrypt: ");
+                string ciphertext = ValidateInputLetters("Enter text to decrypt: ");
                 string plaintext = Encryption_Decryption.Monoalphabetic_Decrypt(ciphertext);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Decrypted text: {plaintext}");
@@ -87,7 +109,7 @@ namespace encryptc_
 
             if (action == "1")
             {
-                string plaintext = ValidateInput("Enter text to encrypt: ");
+                string plaintext = ValidateInputLetters("Enter text to encrypt: ");
                 int key;
                 while (true)
                 {
@@ -111,7 +133,7 @@ namespace encryptc_
             }
             else if (action == "2")
             {
-                string ciphertext = ValidateInput("Enter text to decrypt: ");
+                string ciphertext = ValidateInputLetters("Enter text to decrypt: ");
                 int key;
                 while (true)
                 {
