@@ -44,8 +44,8 @@ namespace encryptc_
         {
             Info(
                 "Caesar Cipher",
-                "The Caesar cipher is a substitution cipher where each letter in the plaintext is shifted a certain\nnumber of places down the alphabet.",
-                "With a shift of 3, A -> D, B -> E, C -> F, etc.",
+                "Caesar cipher is the same as the monoalphabetic cipher in which a each letter is substituted to another letter allocated by a number(key) where each letter in the plaintext is shifted a certain\nnumber of places down the alphabet.",
+                "With a shift(key) of 3, A -> D, B -> E, C -> F, etc.",
                 "- Simple to implement and understand.\n- Provides a basic level of security.",
                 "- Vulnerable to frequency analysis attacks.\n- Limited number of possible keys (26), making it easy to brute-force."
             );
