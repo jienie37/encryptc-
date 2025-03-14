@@ -34,7 +34,7 @@ namespace encryptc_
                 }
                 else if (choice == "2")
                 {
-                    CipherOptions.CaesarCipherOption();
+                    CipherOptions.CaesarOption();
                     TryAgain();
                 }
                 else if (choice == "3")
@@ -44,7 +44,7 @@ namespace encryptc_
                 }
                 else if (choice == "4")
                 {
-                    CipherOptions.PiSubstitutionCipherOption();
+                    CipherOptions.PiSubstitutionOption();
                     TryAgain();
                 }
                 else if (choice == "5")

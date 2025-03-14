@@ -102,7 +102,7 @@ namespace encryptc_
         }
 
         /*==================================================================================================================*/
-        public static void CaesarCipherOption()
+        public static void CaesarOption()
         {
             CipherInfo.Caesar_Info();
             string action = Option();
@@ -184,7 +184,7 @@ namespace encryptc_
         }
 
         /*==================================================================================================================*/
-        public static void PiSubstitutionCipherOption()
+        public static void PiSubstitutionOption()
         {
             CipherInfo.PiSubstitution_Info();
             string action = Option();

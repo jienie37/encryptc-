@@ -47,7 +47,7 @@ namespace encryptc_
                 "The Caesar cipher is a substitution cipher where each letter in the plaintext is shifted a certain\nnumber of places down the alphabet.",
                 "With a shift of 3, A -> D, B -> E, C -> F, etc.",
                 "- Simple to implement and understand.\n- Provides a basic level of security.",
-                "- Vulnerable to frequency analysis attacks.\n- Limited number of possible keys (25), making it easy to brute-force."
+                "- Vulnerable to frequency analysis attacks.\n- Limited number of possible keys (26), making it easy to brute-force."
             );
         }
 
